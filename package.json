@@ -1,0 +1,10 @@
+{
+  "name": "renewal-clock",
+  "version": "1.0.0",
+  "description": "The last day to act on every contract you have: Ontario leases, phone and internet plans, gyms and more.",
+  "type": "module",
+  "private": true,
+  "author": "John Khan <johnnykhan1@gmail.com>",
+  "license": "MIT",
+  "scripts": { "test": "node --test tests/*.test.js", "serve": "python3 -m http.server 8000" }
+}

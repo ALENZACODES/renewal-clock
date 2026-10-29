@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; form-action 'none'; base-uri 'none'">
+<meta name="author" content="John Khan">
+<title>Renewal Clock: the last day to act on every contract you have</title>
+<meta name="description" content="Paste a lease, phone plan, internet bill or gym contract. Renewal Clock finds the last day you can act, using Ontario and Canadian rules, and gives you the steps, the message and a calendar reminder. It all stays on your device.">
+<meta property="og:title" content="Renewal Clock">
+<meta property="og:description" content="The last day to act on every contract you have. Ontario lease notice, CRTC phone and internet rules, gym renewals. On your device.">
+<meta property="og:image" content="https://alenzacodes.github.io/renewal-clock/docs/social-preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='17' r='12' fill='%23011f5b'/%3E%3Cpath d='M16 9v8l5 3' stroke='%23fff' stroke-width='2.6' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='17' r='12' stroke='%23990000' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="src/theme/waves.css">
+<link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to your deadlines</a>
+<header class="w-wave">
+ <div class="wrap">
+  <h1>Renewal Clock</h1>
+  <p class="lead">Leases, phone plans, internet, gyms. Each one has a last day when you can still leave, switch or say no to a price jump, and it is rarely the date on the contract. Renewal Clock works it out with Ontario and Canadian rules, then tells you exactly what to do.</p>
+  <p class="lock"><span aria-hidden="true">🔒</span> Your contracts stay on this device. A security policy stops the page from sending anything anywhere, and there is no account.</p>
+ </div>
+</header>
+<main class="wrap" id="main">
+  <p class="today">Today is <strong id="todayTxt"></strong></p>
+
+  <section id="empty" class="empty card" hidden>
+    <h2>Start with one contract</h2>
+    <p>Paste the text of a contract, or fill in a few dates. Or look around with a made up household first.</p>
+    <button class="btn" id="tryBtn" type="button">Try a sample household</button>
+    <button class="btn alt" id="addBtn0" type="button">Add a contract</button>
+  </section>
+
+  <section id="next" class="next" hidden aria-live="polite"></section>
+
+  <section id="board" hidden aria-labelledby="boardH">
+    <div class="rowhead">
+      <h2 id="boardH">Your deadlines</h2>
+      <div>
+        <button class="btn" id="addBtn" type="button">Add a contract</button>
+        <button class="btn alt" id="icsAll" type="button">📅 Add all to calendar</button>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><span id="sCount">0</span><small>contracts watched</small></div>
+      <div class="stat bad"><span id="sUrgent">0</span><small>need action within 7 days</small></div>
+      <div class="stat"><span id="sSoon">0</span><small>within 30 days</small></div>
+      <div class="stat good"><span id="sMoney">$0</span><small>a year at stake in price jumps and renewals</small></div>
+    </div>
+    <ol id="list" class="list"></ol>
+    <h2>The next twelve months</h2>
+    <div id="timeline" class="timeline" role="img"></div>
+  </section>
+
+  <section id="detail" class="card detail" hidden aria-live="polite"></section>
+
+  <section id="add" class="card add" hidden aria-labelledby="addH">
+    <div class="rowhead"><h2 id="addH">Add a contract</h2><button class="linkish" id="closeAdd" type="button">Close</button></div>
+    <div class="tabs" role="tablist">
+      <button role="tab" id="tabPaste" aria-selected="true" type="button">Paste the contract</button>
+      <button role="tab" id="tabForm" aria-selected="false" type="button">Fill in by hand</button>
+    </div>
+    <div id="pastePane">
+      <label for="paste" class="note">Paste the terms, the confirmation email or the first page. Renewal Clock reads it here on your device and highlights every fact it used.</label>
+      <textarea id="paste" rows="7" spellcheck="false" placeholder="For example: This contract will automatically renew for successive 12 month periods unless the member gives 30 days' written notice."></textarea>
+      <p class="note">Try an example: <button class="linkish ex" data-ex="gym" type="button">gym</button> · <button class="linkish ex" data-ex="lease" type="button">lease</button> · <button class="linkish ex" data-ex="phone" type="button">phone</button> · <button class="linkish ex" data-ex="other" type="button">alarm monitoring</button></p>
+      <button class="btn" id="readBtn" type="button">Read it</button>
+      <div id="readOut" hidden>
+        <h3>What it found</h3>
+        <div id="marked" class="marked"></div>
+        <ul id="found" class="found"></ul>
+        <p class="note">Check these against the contract. You can fix anything in the form below before saving.</p>
+      </div>
+    </div>
+    <form id="form" class="form" hidden></form>
+  </section>
+
+  <details class="about">
+    <summary>The rules it uses, and what it cannot do</summary>
+    <div id="rules"></div>
+  </details>
+  <div class="tools">
+    <button class="linkish" id="exportBtn" type="button">Save a backup</button> ·
+    <label class="linkish" for="importFile">Restore a backup</label><input id="importFile" type="file" accept="application/json" hidden> ·
+    <button class="linkish" id="clearBtn" type="button">Remove everything</button>
+  </div>
+</main>
+<footer class="wrap">
+  <p>Renewal Clock explains rules and does the date maths. It is not legal advice, and your contract or your landlord's situation may add details it cannot see. Each answer links the rule it came from. Built in Toronto by John Khan. <a href="https://github.com/ALENZACODES/renewal-clock">Source code</a>.</p>
+</footer>
+<script type="module" src="src/app.js"></script>
+</body>
+</html>

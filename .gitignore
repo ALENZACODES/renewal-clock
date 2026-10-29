@@ -1,0 +1,4 @@
+docs/_video/
+docs/demo.webm
+node_modules/
+.env
