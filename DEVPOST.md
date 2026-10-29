@@ -1,6 +1,6 @@
 # Devpost submission: Renewal Clock (LaunchPad Hacks)
 
-Paste each block into the matching field. Fill [LIVE_URL], [REPO_URL] and [YOUTUBE_URL].
+Paste each block into the matching field. Fill [YOUTUBE_URL] once the video is up. The live and repo links are filled in.
 
 **Project name**
 Renewal Clock
@@ -12,8 +12,8 @@ Every lease, phone plan and gym has a last day to leave or say no, and it's rare
 javascript, html5, css3, node.js, icalendar, playwright, github-pages
 
 **Try it out links**
-* [LIVE_URL]
-* [REPO_URL]
+* https://alenzacodes.github.io/renewal-clock/
+* https://github.com/ALENZACODES/renewal-clock
 
 **Video demo link**
 [YOUTUBE_URL]
@@ -88,7 +88,7 @@ Most of the money people lose on contracts comes from timing, not from choosing 
 * **Sample data**: the sample household is made up.
 
 ## Setup steps (for judges who want to run it locally)
-1. Open [LIVE_URL], or clone [REPO_URL] and run `python3 -m http.server 8000` in the folder, then open http://localhost:8000.
+1. Open https://alenzacodes.github.io/renewal-clock/, or clone https://github.com/ALENZACODES/renewal-clock and run `python3 -m http.server 8000` in the folder, then open http://localhost:8000.
 2. Click **Try a sample household**. Add `?today=2026-10-29` to the address to see the same dates as the video.
 3. Run the tests with `node --test` (Node 20 or newer).
 
@@ -99,8 +99,8 @@ Most of the money people lose on contracts comes from timing, not from choosing 
 **Team**: John Khan (solo), Toronto, Ontario
 
 ## Before submitting (checklist for John)
-1. Make the repo public and turn on GitHub Pages from the main branch root. Keep it up until at least November 25 (judging runs November 21 to 25).
+1. Done October 29: the repo is public and GitHub Pages is on. Keep it up until at least November 25 (judging runs November 21 to 25).
 2. Open the live link and click Try a sample household.
 3. Upload docs/demo-captioned.mp4 to YouTube as Public or Unlisted (2:32; a 2 to 3 minute video is encouraged but optional).
-4. Replace [LIVE_URL], [REPO_URL] and [YOUTUBE_URL] above.
+4. Replace [YOUTUBE_URL] above.
 5. Upload the eight gallery images in order.
