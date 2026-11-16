@@ -48,6 +48,38 @@ python3 scripts/record_demo.py       # records the captioned demo
 | `src/app.js` | The interface |
 | `src/sample.js` | A made up household |
 
+## Project structure
+
+```text
+renewal-clock/
+├── .github/
+│   └── workflows/         # CI workflows (1 file)
+├── docs/                  # Demo video and gallery images (10 files)
+├── scripts/
+│   ├── browser_check.py   # Browser check
+│   ├── record_demo.py     # Records the captioned demo
+│   └── social_preview.py  # Renders the social preview image
+├── src/
+│   ├── theme/             # Shared page theme (3 files)
+│   ├── app.js             # Interface logic
+│   ├── dates.js           # Date-only arithmetic
+│   ├── ics.js             # Calendar file export
+│   ├── plan.js            # Turns a contract into its deadlines
+│   ├── reader.js          # Reads a pasted contract
+│   ├── rules.js           # Contract rules and their sources
+│   ├── sample.js          # Invented sample household
+│   └── style.css          # Styles
+├── tests/                 # Automated tests
+│   └── engine.test.js
+├── .gitignore
+├── DEVPOST.md             # Submission write-up
+├── index.html             # Page markup
+├── LICENSE                # Licence
+├── package.json           # npm scripts and dependencies
+├── README.md              # This file
+└── VIDEO_SCRIPT.md        # Demo video script
+```
+
 ## Sources
 
 * Residential Tenancies Act, 2006: https://www.ontario.ca/laws/statute/06r17
